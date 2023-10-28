@@ -1,0 +1,26 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+.personalDetails{
+    width: 200px;
+}
+
+.box{
+    border: 1px solid black;
+}
+
+table{
+    border: 1px solid black;
+}
+td{
+    height: 100px;
+}
+
+#centerName{
+    width: 100%;
+    padding: 20px 5px 20px 5px;
+    font-size: 20px;
+    font-weight: 500;
+}

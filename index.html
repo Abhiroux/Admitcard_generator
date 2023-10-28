@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admit Card Generator</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link href='http://fonts.googleapis.com/css?family=Oswald:400,300,700' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/395d7dabe4.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
+    <script src="script2.js"></script>
+</head>
+
+<body>
+    <div class="container" id="admitCard-form">
+        <h1 class="text-center my-2 title"><u>Admit Card Generator</u></h1>
+        <div class="row">
+            <div class="col-md-6 mt-5">
+                <h3 class="text-muted">Personal Information</h3>
+                <div class="form-group mt-3">
+                    <label for="name">Name</label>
+                    <input type="text" name="name" id="name" class="form-control" placeholder="Full Name">
+                </div>
+                <div class="form-group mt-3">
+                    <label for="FName">Father's Name</label>
+                    <input type="text" name="FName" id="FName" class="form-control" placeholder="Father's Name">
+                </div>
+                <div class="form-group mt-3">
+                    <label for="DOB">Date of Birth</label>
+                    <input type="date" name="DOB" id="DOB" class="form-control">
+                </div>
+                <div class="form-group mt-3">
+                    <label for="rollno">Roll Number</label>
+                    <input type="text" name="rollno" id="rollno" class="form-control">
+                </div>
+                <div class="form-group mt-3">
+                    <label for="address">Address</label>
+                    <textarea name="address" id="address" class="form-control"></textarea>
+                </div>
+                <div class="form-group mt-3">
+                    <label for="image">Passport sized photo</label>
+                    <input type="file" name="image" id="image" class="form-control">
+                </div>
+            </div>
+            <div class="col-md-6 mt-5">
+                <h3 class="text-muted">Examination Information</h3>
+                <div class="form-group mt-3">
+                    <label for="examBoard">Examination Institute/Board</label>
+                    <input type="text" name="examBoard" id="examBoard" class="form-control"
+                        placeholder="Institute Name">
+                </div>
+                <div class="form-group mt-3">
+                    <label for="nameOFexamination">Name of Examination</label>
+                    <input type="text" name="nameOFexamination" id="nameOFexamination" class="form-control"
+                        placeholder="Examination Name">
+                </div>
+                <div class="form-group mt-3">
+                    <label for="dateOFexam">Date of Examination</label>
+                    <input type="date" name="dateOFexam" id="dateOFexam" class="form-control">
+                </div>
+                <div class="form-group mt-3">
+                    <label for="dayOFexam">Day of Examination</label>
+                    <input type="text" name="dayOFexam" id="dayOFexam" class="form-control">
+                </div>
+                <div class="form-group mt-3">
+                    <label for="timeOFexam">Time of Examination</label>
+                    <input type="text" name="timeOFexam" id="timeOFexam" class="form-control">
+                </div>
+                <div class="form-group mt-3">
+                    <label for="subjectOFexam">Subject Name</label>
+                    <input type="text" name="subjectOFexam" id="subjectOFexam" class="form-control">
+                </div>
+                <div class="form-group mt-3">
+                    <label for="addressOFexam">Exam Center Address</label>
+                    <textarea name="addressOFexam" id="addressOFexam" class="form-control"></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="container text-center mt-3 mb-4">
+            <button onclick="generateAdmit()" class="btn btn-primary btn-lg">Generate Admit Card</button>
+        </div>
+    </div>
+
+    <!-- printing format -->
+    <div id="admitCard-template" style="display: none;">
+
+        <div class="container box mt-4">
+            <div class="row">
+                <div class="d-flex justify-content-around">
+                    <p class="h3" id="instituteName">CHANDIGARH UNIVERSITY</p>
+                    <p class="h3">ADMIT CARD</p>
+                </div>
+            </div>
+            <hr>
+            <div class="contentbox">
+                <div class="d-flex justify-content-between">
+                    <div class="details">
+                        <p class="personalDetails d-inline-block h6">Admit Card Number:</p><span
+                            id="admitCardNumber">0011</span><br>
+                        <p class="personalDetails d-inline-block h6">Name of Candidate:</p><span
+                            id="candidateName">Parth
+                            Srivastav</span><br>
+                        <p class="personalDetails d-inline-block h6">Father's Name:</p><span id="fatherName">Abhishek
+                            Kumar</span><br>
+                        <p class="personalDetails d-inline-block h6">Date of Birth:</p><span
+                            id="birthDay">21/03/2003</span><br>
+                        <p class="personalDetails d-inline-block h6">Roll Number:</p><span
+                            id="rollNumber">21BCA1447</span><br>
+                        <p class="personalDetails d-inline-block h6">Address:</p><span id="CandidateAddress">Kodarma,
+                            Jharkhand</span><br>
+                    </div>
+                    <div class="pics">
+                        <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
+                            alt="Profile Pic" width="100px" id="imgT">
+                    </div>
+                </div>
+                <hr>
+                <div class="container mt-2">
+                    <table class="table">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th colspan="4" class="text-center h4" id="examName">XYZ Entrance Test</th>
+                            </tr>
+                            <tr>
+                                <th>Date and Day</th>
+                                <th>Timings</th>
+                                <th>Subjects</th>
+                                <th>Invigilator's Signature</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td id="dateDay">27/10/2023, Thursday</td>
+                                <td id="timings">09:30AM - 12:30PM</td>
+                                <td id="subjects">Entrance Test</td>
+                                <td id="inviSign"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="centerAddrsss mt-2">
+                    <p class="h4">EXAMINATION NAME & ADDRESS:</p>
+                    <input type="text" name="centerName" id="centerName"
+                        value="Chanidgarh University Block-B4, Shahbjada Ajitsingh Nagar, 140314">
+                </div>
+                <hr>
+                <div class="footer">
+                    <h4>INSTRUCTIONS TO THE CANDIDATE:</h4>
+                    <ol type="1">
+                        <li>Please bring this admit card along with a valid photo ID to the examination hall.</li>
+                        <li>Ensure that the photograph and signature on the admit card are clear and recognizable.</li>
+                        <li>Report to the examination center at least 30 minutes before the scheduled exam time.</li>
+                        <li>Electronic devices, including mobile phones, smartwatches, and calculators, are strictly
+                            prohibited inside the examination hall.</li>
+                        <li>Candidates are required to follow the dress code specified by the examination authority.
+                        </li>
+                        <li>Any kind of malpractice during the examination will result in immediate disqualification.
+                        </li>
+                        <li>Candidates must not write anything on the admit card. Any kind of tampering with the admit
+                            card
+                            may lead to disqualification.</li>
+                        <li>The admit card is non-transferable. It should not be shared with anyone else.</li>
+                        <li>Candidates are advised to read the instructions on the question paper carefully before
+                            starting
+                            the exam.</li>
+                        <li>In case of any discrepancy or issue with the admit card, contact the examination authority
+                            immediately.</li>
+                        <li>Do not forget to carry necessary stationery items like pens, pencils, erasers, and rulers.
+                        </li>
+                        <li>Follow the COVID-19 guidelines provided by the examination center, including wearing a mask
+                            and maintaining social distancing.</li>
+                        <li>Do not leave the examination hall without the permission of the invigilator.</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <div class="my-3 text-center btn btn-primary" style="display: block; margin: auto; width: 300px;">
+            <button onclick="printAdmit()" class="btn background">Print Admit Card</button>
+        </div>
+    </div>
+
+
+    <script src="https://kit.fontawesome.com/395d7dabe4.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
