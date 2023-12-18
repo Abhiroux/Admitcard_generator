@@ -1,3 +1,22 @@
+<?php
+session_start();
+//Accessing the Post-Redirected-Get data sent from login page
+$serializedData = urldecode($_GET['profile']);
+$profileArray = unserialize($serializedData);
+if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
+    $message = "Please log in to access the dashboard.";
+    $_SESSION['message'] = "Please log in to access the dashboard.";
+    header("location: login.php");
+    exit;
+}
+
+if (isset($_POST['get_started'])) {
+    header('location:admitCardForm.php?profile=' . urldecode(serialize($profileArray)));
+    return;
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,22 +39,30 @@
 <body>
     <nav class="navbar navbar-dark navbar-expand-lg" id="navv" style="background-color: rgb(136, 72, 239);">
         <div class="container">
-            <a class="navbar-brand" href="http://localhost/Admit%20Card%20Generator/index.html"><span class="h3">Admit
-                    Card Generator</span></a>
+            <a class="navbar-brand" href="<?php echo $_SESSION['dashboardURL'] ?>"><span class="h3">Admit Card
+                    Generator</span></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <div class="navbar-nav ml-auto" id="link">
-                    <a href="login.php" class="nav-item nav-link d-flex flex-column align-items-center mx-5">
-                        <span><i class="fa-solid fa-1x fa-arrow-right-to-bracket text-light"></i></span>
-                        <span>Login</span>
+                    <a href="<?php echo "profileDashboard.php?profile=" . urlencode(serialize($profileArray)); ?>"
+                        class="nav-item nav-link d-flex flex-column align-items-center mx-5">
+                        <span><i class="fa-solid fa-user text-light"></i></span>
+                        <span>
+                            <?php
+                            echo htmlentities($profileArray['name']);
+                            ?>
+                        </span>
                     </a>
-                    <a href="signup.php" class="nav-item nav-link d-flex flex-column align-items-center">
-                        <span><i class="fa-solid fa-1x fa-user-plus text-light"></i></span>
-                        <span>Sign up</span>
-                    </a>
+                    <form method="post">
+                        <a href="logoutScript.php" class="nav-item nav-link d-flex flex-column align-items-center"
+                            role="button">
+                            <span><i class="fa-solid fa-arrow-right-from-bracket text-light"></i></span>
+                            <span>Logout</span>
+                        </a>
+                    </form>
                 </div>
             </div>
         </div>
@@ -50,9 +77,11 @@
                     your exams or events effortlessly.</p>
                 <hr class="my-4">
                 <p>Simply upload your details and photo, and our tool will generate an admit card for you.</p>
-                <a class="btn btn-lg text-light" href="login.php" role="button"
-                    style="background-color: rgb(136, 72, 239);">Get
-                    Started</a>
+                <form method="post">
+                    <button name="get_started" class="btn btn-lg text-light" role="button"
+                        style="background-color: rgb(136, 72, 239);">Get
+                        Started</button>
+                </form>
                 <ul class="list-unstyled text-left mt-5" style="font-size: 24px;">
                     <li><i class="fas fa-check " style="color: rgb(136, 72, 239);"></i> Customizable templates for
                         various

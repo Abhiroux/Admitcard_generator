@@ -1,26 +1,33 @@
-*{
+* {
     margin: 0px;
     padding: 0px;
 }
 
-.personalDetails{
+.personalDetails {
     width: 200px;
 }
 
-.box{
+.box {
     border: 1px solid black;
 }
 
-table{
+table {
     border: 1px solid black;
 }
-td{
+
+td {
     height: 100px;
 }
 
-#centerName{
+#centerName {
     width: 100%;
     padding: 20px 5px 20px 5px;
     font-size: 20px;
     font-weight: 500;
+}
+
+body {
+    background: url('https://img.freepik.com/premium-photo/gradient-soft-pink-lilac-abstract-background_901408-841.jpg');
+    background-size: cover;
+    background-blend-mode: overlay;
 }
